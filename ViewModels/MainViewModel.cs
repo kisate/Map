@@ -15,7 +15,7 @@ namespace WpfMap.ViewModels
 {
     class MainViewModel : INotifyPropertyChanged, IPanZoomRegistrar
     {
-        const string MAPURI = "pack://application:,,,/WpfMap;component/PlainMap.jpg";
+        const string MAPURI = "pack://application:,,,/{0};component/PlainMap.jpg";
         const string DATAFILE = "MapData.xml";
 
         private FrameworkElement _map;
@@ -180,7 +180,11 @@ namespace WpfMap.ViewModels
             MapImageSource.BeginInit();
             MapImageSource.CacheOption = BitmapCacheOption.OnLoad;
             MapImageSource.CreateOptions = BitmapCreateOptions.None;
-            MapImageSource.UriSource = new Uri(MAPURI, UriKind.Absolute);
+
+            var name = System.Reflection.Assembly.GetExecutingAssembly().GetName();
+            var uri = string.Format(MAPURI, name);
+
+            MapImageSource.UriSource = new Uri(uri, UriKind.Absolute);
             MapImageSource.EndInit();
 
             _zoomer.ImageSize = new Size(MapImageSource.Width, MapImageSource.Height);
