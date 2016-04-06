@@ -117,8 +117,53 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="PlainMap" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>PlainMap.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="ConfirmationCaption" xml:space="preserve">
+    <value>Подтверждение</value>
+  </data>
+  <data name="CreateNewHeader" xml:space="preserve">
+    <value>_Создание новых точек</value>
+  </data>
+  <data name="DeleteConfirmationText" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить текущую точку?</value>
+  </data>
+  <data name="DeletePointHeader" xml:space="preserve">
+    <value>_Удалить текущую точку</value>
+  </data>
+  <data name="EditHeader" xml:space="preserve">
+    <value>_Редактирование</value>
+  </data>
+  <data name="EditModeHeader" xml:space="preserve">
+    <value>_Режим редактирования</value>
+  </data>
+  <data name="ErrorOnLoad" xml:space="preserve">
+    <value>Программа не смогла загрузить базу с точками</value>
+  </data>
+  <data name="ExitConfirmationText" xml:space="preserve">
+    <value>Вы уверены, что хотите выйти?</value>
+  </data>
+  <data name="ExitHeader" xml:space="preserve">
+    <value>В_ыход</value>
+  </data>
+  <data name="FileHeader" xml:space="preserve">
+    <value>П_рограмма</value>
+  </data>
+  <data name="FullScreenHeader" xml:space="preserve">
+    <value>П_олноэкранный режим</value>
+  </data>
+  <data name="MovePointHeader" xml:space="preserve">
+    <value>_Перемещение текущей точки</value>
+  </data>
+  <data name="NewPointDefaultDescription" xml:space="preserve">
+    <value>Введите описание точки</value>
+  </data>
+  <data name="NewPointDefaultName" xml:space="preserve">
+    <value>Введите название точки</value>
+  </data>
+  <data name="SaveHeader" xml:space="preserve">
+    <value>_Сохранить всё</value>
+  </data>
+  <data name="UnsavedEditsConfirmationText" xml:space="preserve">
+    <value>Внимание! 
+У вас остались несохраненные правки.</value>
   </data>
 </root>
