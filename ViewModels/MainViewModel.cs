@@ -307,7 +307,7 @@ namespace WpfMap.ViewModels
         public void SetFullScreen(object param)
         {
             MapApp.Current.MainWindow.Topmost = true;
-            MapApp.Current.MainWindow.WindowStyle = WindowStyle.None;
+            //MapApp.Current.MainWindow.WindowStyle = WindowStyle.None;
             MapApp.Current.MainWindow.WindowState = WindowState.Maximized;
         }
 
