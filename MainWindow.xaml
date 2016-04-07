@@ -43,54 +43,38 @@
                         </ItemsControl.ItemContainerStyle>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <ContentControl Content="{Binding}">
-                                    <ContentControl.Style>
-                                        <Style TargetType="ContentControl">
+                                <Ellipse StrokeThickness="1">
+                                    <Ellipse.InputBindings>
+                                        <MouseBinding MouseAction="LeftClick" Command="{Binding Activate}"  />                                        
+                                    </Ellipse.InputBindings>
+                                    <Ellipse.Style>
+                                        <Style TargetType="Ellipse">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding State}" Value="Inactive">
-                                                    <Setter Property="ContentTemplate">
-                                                        <Setter.Value>
-                                                            <DataTemplate>
-                                                                <Ellipse Fill="Blue" Width="12" Height="12" Margin="-6,-6,6,6" Stroke="Black" StrokeThickness="1">
-                                                                    <Ellipse.InputBindings>
-                                                                        <MouseBinding MouseAction="LeftClick" Command="{Binding Activate}"  />
-                                                                    </Ellipse.InputBindings>
-                                                                </Ellipse>
-                                                            </DataTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
+                                                    <Setter Property="Fill" Value="Blue" />
+                                                    <Setter Property="Width" Value="12" />
+                                                    <Setter Property="Height" Value="12" />
+                                                    <Setter Property="Margin" Value="-6,-6,6,6" />
+                                                    <Setter Property="Stroke" Value="Blue" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding State}" Value="ActiveDetailsHidden">
-                                                    <Setter Property="ContentTemplate">
-                                                        <Setter.Value>
-                                                            <DataTemplate>
-                                                                <Ellipse Fill="Red" Width="16" Height="16" Margin="-8,-8,8,8" Stroke="Black" StrokeThickness="1">
-                                                                    <Ellipse.InputBindings>
-                                                                        <MouseBinding MouseAction="LeftClick" Command="{Binding Activate}" />
-                                                                    </Ellipse.InputBindings>
-                                                                </Ellipse>
-                                                            </DataTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
+                                                    <Setter Property="Fill" Value="Red" />
+                                                    <Setter Property="Width" Value="16" />
+                                                    <Setter Property="Height" Value="16" />
+                                                    <Setter Property="Margin" Value="-8,-8,8,8" />
+                                                    <Setter Property="Stroke" Value="Black" />
                                                 </DataTrigger>
                                                 <DataTrigger Binding="{Binding State}" Value="ActiveDetailsShown">
-                                                    <Setter Property="ContentTemplate">
-                                                        <Setter.Value>
-                                                            <DataTemplate>
-                                                                <Ellipse Fill="Red" Width="16" Height="16" Margin="-8,-8,8,8" Grid.Column="0" VerticalAlignment="Top">
-                                                                    <Ellipse.InputBindings>
-                                                                        <MouseBinding MouseAction="LeftClick" Command="{Binding Activate}" />
-                                                                    </Ellipse.InputBindings>
-                                                                </Ellipse>
-                                                            </DataTemplate>
-                                                        </Setter.Value>
-                                                    </Setter>
-                                                </DataTrigger>                                                
-                                                
+                                                    <Setter Property="Fill" Value="Red" />
+                                                    <Setter Property="Width" Value="16" />
+                                                    <Setter Property="Height" Value="16" />
+                                                    <Setter Property="Margin" Value="-8,-8,8,8" />
+                                                    <Setter Property="Stroke" Value="Red" />
+                                                </DataTrigger>
                                             </Style.Triggers>
                                         </Style>
-                                    </ContentControl.Style>
-                                </ContentControl>
+                                    </Ellipse.Style>
+                                </Ellipse>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>
