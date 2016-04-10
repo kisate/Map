@@ -11,11 +11,17 @@ namespace WpfMap.Models
     {
         [XmlAttribute]
         public double X { get; set; }
+
         [XmlAttribute]
         public double Y { get; set; }
+
         [XmlAttribute]
         public string Name { get; set; }
+
         [XmlElement]
         public string Description { get; set; }
+
+        [XmlElement]
+        public string PresentationFileName { get; set; }
     }
 }

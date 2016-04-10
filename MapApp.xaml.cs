@@ -4,6 +4,8 @@ using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
+using System.IO;
+using System.Diagnostics;
 
 namespace WpfMap
 {
@@ -64,6 +66,17 @@ namespace WpfMap
                 MessageBox.Show(string.Format("Error retrieving resource wiht key {0}: {1}", key, ex.Message));
             }
             return res;
+        }
+
+        public static void StartExternalPresentation(string filename)
+        {
+            var currentPath = Directory.GetCurrentDirectory();
+            var path = Path.Combine(currentPath, "files", filename);
+            var pi = new ProcessStartInfo(path);
+            pi.Verb = "Open";
+            pi.UseShellExecute = true;
+            pi.WindowStyle = ProcessWindowStyle.Normal;
+            Process.Start(pi);
         }
     }
 }

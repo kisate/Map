@@ -9,7 +9,7 @@ namespace WpfMap.ViewModels
 {
     sealed class MapPanZoomer
     {
-        private const double ZOOMSTEP = 0.2;        
+        private const double ZOOMSTEP = 0.6;        
 
         private double _zoomFactor;
         private Point _offset;

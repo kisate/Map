@@ -10,6 +10,7 @@
         <vm:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
         <Style TargetType="{x:Type MenuItem}">
             <Setter Property="Header" Value="{Binding Header}"/>
             <Setter Property="Command" Value="{Binding Command}"/>
@@ -49,6 +50,7 @@
                                     </Ellipse.InputBindings>
                                     <Ellipse.Style>
                                         <Style TargetType="Ellipse">
+                                            <Setter Property="ToolTip" Value="{Binding Title}" />
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding State}" Value="Inactive">
                                                     <Setter Property="Fill" Value="Blue" />
@@ -101,6 +103,16 @@
                                          IsReadOnly="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
                                              Path=DataContext.IsViewMode}"                                          
                                          />
+                                <Button Visibility="{Binding PresentationFileVisible}" 
+                                        Command="{Binding OpenPresentation}">Открыть перезентацию</Button>
+                                <Label Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
+                                             Path=DataContext.EditModeVisible}">Имя файла презентации</Label>
+                                <TextBox Text="{Binding PresentationFile, Mode=TwoWay}" 
+                                         Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
+                                             Path=DataContext.EditModeVisible}" />
+                                <Button Content="OK"
+                                    Visibility="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, 
+                                             Path=DataContext.EditModeVisible}" />                                
                             </StackPanel>
                         </Border>
                     </StackPanel>

@@ -13,7 +13,7 @@ namespace WpfMap.ViewModels
     {
         private double _x, _y;
         private Point _realCoords;
-        private string _title, _description;
+        private string _title, _description, _presentation;
         private MapItemViewStateType _state;
         private bool _trackChanges;
 
@@ -27,6 +27,11 @@ namespace WpfMap.ViewModels
         /// Command on clicking on a circle
         /// </summary>
         public SimpleCommand Activate { get; set; }
+
+        /// <summary>
+        /// Opens associated file
+        /// </summary>
+        public SimpleCommand OpenPresentation { get; set; }
 
         /// <summary>
         /// Is actively shown
@@ -122,7 +127,37 @@ namespace WpfMap.ViewModels
                 }
             }
         }
+
+        public string PresentationFile
+        {
+            get { return _presentation; }
+            set
+            {
+                if (_presentation != value)
+                {
+                    _presentation = value;
+                    if (_trackChanges)
+                    {
+                        IsChanged = true;
+                    }
+                    OnPropertyChanged("PresentationFile");
+                    OnPropertyChanged("PresentationFileVisible");
+                }
+            }
+        }
+
+        public Visibility PresentationFileVisible
+        {
+            get { return string.IsNullOrEmpty(_presentation) ? Visibility.Collapsed : Visibility.Visible; } 
+        }
+
         #endregion
+
+        public MapDataItemVM(MapDataItem d)
+            :this(d.X, d.Y, 0,0,d.Name,d.Description)
+        {
+            PresentationFile = d.PresentationFileName;
+        }
 
         public MapDataItemVM(double x_image, double y_image, double x, double y,
             string name, string description)
@@ -133,7 +168,14 @@ namespace WpfMap.ViewModels
             Description = description;
             State = MapItemViewStateType.Inactive;
             Activate = new SimpleCommand(OnActivate);
+            OpenPresentation = new SimpleCommand(OnStartPresentation);
             _trackChanges = true;
+        }
+
+
+        private void OnStartPresentation(object param)
+        {
+            MapApp.StartExternalPresentation(PresentationFile);
         }
 
         /// <summary>

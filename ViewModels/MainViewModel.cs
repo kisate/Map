@@ -60,8 +60,17 @@ namespace WpfMap.ViewModels
                 {
                     _isViewMode = value;
                     OnPropertyChanged("IsViewMode");
+                    OnPropertyChanged("EditModeVisible");
                 }
             }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility EditModeVisible
+        {
+            get { return !IsViewMode ? Visibility.Visible : Visibility.Collapsed; }
         }
 
         /// <summary>
@@ -84,8 +93,8 @@ namespace WpfMap.ViewModels
         {
             get 
             { 
-                return _currentMapItem == null ? Visibility.Hidden : 
-                    _currentMapItem.State == MapItemViewStateType.ActiveDetailsShown ? Visibility.Visible : Visibility.Hidden; 
+                return _currentMapItem == null ? Visibility.Collapsed :
+                    _currentMapItem.State == MapItemViewStateType.ActiveDetailsShown ? Visibility.Visible : Visibility.Collapsed; 
             }
         }
 
@@ -142,7 +151,7 @@ namespace WpfMap.ViewModels
 
             foreach (var d in data.Items)
             {
-                var mapItem = new MapDataItemVM(d.X, d.Y, 0, 0, d.Name, d.Description);
+                var mapItem = new MapDataItemVM(d);
                 mapItem.Selected += new EventHandler<EventArgs>(OnSelectCurrentItem);
                 MapItems.Add(mapItem);
             }
@@ -162,7 +171,13 @@ namespace WpfMap.ViewModels
             var data = new MapData();
             data.Items.AddRange(
                 MapItems.Select(i =>
-                    new MapDataItem { X = i.RealCoords.X, Y = i.RealCoords.Y, Name = i.Title, Description = i.Description }));
+                    new MapDataItem { 
+                        X = i.RealCoords.X, 
+                        Y = i.RealCoords.Y, 
+                        Name = i.Title, 
+                        Description = i.Description, 
+                        PresentationFileName = i.PresentationFile 
+                    }));
 
             var adapter = new MapDataAdapter(DATAFILE);
             adapter.Save(data);
@@ -215,7 +230,7 @@ namespace WpfMap.ViewModels
             _editMenu.SubMenuItems.Add(_editController.MovePoint);
             _editMenu.SubMenuItems.Add(new SimpleMenuItem(Properties.Resources.DeletePointHeader, DeleteCurrentPoint));
             _editMenu.SubMenuItems.Add(new SimpleMenuItem(Properties.Resources.SaveHeader, SaveData));
-            _editMenu.Visibility = Visibility.Hidden;
+            _editMenu.Visibility = Visibility.Collapsed;
             MenuItems.Add(_editMenu);
         }
 
@@ -258,7 +273,7 @@ namespace WpfMap.ViewModels
             {
                 IsViewMode = true;
                 menuItem.IsChecked = false;
-                _editMenu.Visibility = Visibility.Hidden;
+                _editMenu.Visibility = Visibility.Collapsed;
 
                 _editController.ResetMode();
             }
@@ -306,8 +321,8 @@ namespace WpfMap.ViewModels
         /// <param name="param"></param>
         public void SetFullScreen(object param)
         {
-            MapApp.Current.MainWindow.Topmost = true;
-            MapApp.Current.MainWindow.WindowStyle = WindowStyle.None;
+            //MapApp.Current.MainWindow.Topmost = true;
+            //MapApp.Current.MainWindow.WindowStyle = WindowStyle.None;
             MapApp.Current.MainWindow.WindowState = WindowState.Maximized;
         }
 
