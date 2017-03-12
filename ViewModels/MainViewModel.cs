@@ -93,8 +93,8 @@ namespace WpfMap.ViewModels
         {
             get 
             { 
-                return _currentMapItem == null ? Visibility.Collapsed :
-                    _currentMapItem.State == MapItemViewStateType.ActiveDetailsShown ? Visibility.Visible : Visibility.Collapsed; 
+                return (_currentMapItem != null && _currentMapItem.State == MapItemViewStateType.ActiveDetailsShown) 
+                    ? Visibility.Visible : Visibility.Collapsed; 
             }
         }
 
